@@ -10,7 +10,7 @@
     <main>
       <h1>To Do list</h1>
       <section class="hero-section">
-        <p class="profil">bienvenue</p>
+        <p class="profil"></p>
         <!-- Bloc connexion / inscription -->
         <article class="modal hide">
           <div class="signin">
@@ -29,6 +29,10 @@
           </div>
         </article>
         <!-- Liste -->
+        <div class="sort-btns">
+          <button type="button" id="sort-date">Trier par date</button>
+          <button type="button" id="sort-state">Trier par état</button>
+        </div>
         <ul>
           <!-- Bouton ajouter -->
           <li class="li-btn-add">
@@ -43,18 +47,19 @@
             </button>
           </li>
           <!-- Ajouter une tâche -->
-          <div class="hide add-task-container">
+          <div class="add-task-container hide">
             <div class="task-container">
               <li class="li-input">
                 <form id="add-task-form">
-                  <div class="input-container">
+                  <span class="task-state task-to-do">A faire</span>
+                  <!-- <div class="input-container">
                     <label for="form-task-state">Status</label>
                     <select name="form-task-state" id="form-task-state">
                       <option value="A faire">A faire</option>
                       <option value="En cours">En cours</option>
                       <option value="Fini">Fini</option>
                     </select>
-                  </div>
+                  </div> -->
                   <div class="input-container">
                     <label for="form-task-date">Date:</label>
                     <input
@@ -72,6 +77,15 @@
                       id="form-task-title"
                       placeholder="Ma nouvelle tâche"
                     />
+                  </div>
+                  <div class="input-container">
+                    <label for="form-task-text">Description:</label>
+                    <textarea
+                      name="form-task-text"
+                      id="form-task-text"
+                      maxlength="200"
+                      style="resize: none"
+                    ></textarea>
                   </div>
                 </form>
               </li>

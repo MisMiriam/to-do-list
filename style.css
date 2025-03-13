@@ -196,14 +196,31 @@ form{
     flex-direction: row;
     align-items: center;
     gap: 5px;
-
+}
+/* Boutons de tri  */
+.sort-btns {
+    button{
+    background-color: var(--btn-cancel-bg-color);
+    border: 1px solid black;
+    border-style: none;
+    padding: 0.2rem 0.8rem;
+    margin-bottom: 0.5rem;
+        &:hover{
+            filter: brightness(70%);
+        }
+        &:active{
+            filter: brightness(120%);
+            background-color: rgb(201, 189, 174);
+        }
+    }
 }
 /* Status des tâches */
-/* .dropdown{
+.dropdown{
     position: relative;
     display: inline-block;
-} */
-/* .dropdown-state{
+}
+.dropdown-state{
+    display: none;
     position: absolute;
     border-radius: 20px;
     padding: 0.5rem 1rem;
@@ -213,7 +230,10 @@ form{
     span{
         margin: 5px 0;
     }
-} */
+}
+.dropdown:hover .dropdown-state {
+    display: block;
+}
 .task-state{
     display: inline-block;
     text-align: center;

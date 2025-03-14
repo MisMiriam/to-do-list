@@ -179,7 +179,8 @@ li{
     justify-content: flex-start;
     box-shadow: 4px 4px 15px var(--btn-shadow-color);
     input,
-    select{
+    select,
+    textarea{
         border: 1px solid black;
         border-radius: 25px;
         padding: 8px;
@@ -191,8 +192,8 @@ form{
     flex-direction: row;
     gap: 0.5rem;
 }
-.input-info{
-    /* display: flex; */
+.input-container{
+    display: flex;
     flex-direction: row;
     align-items: center;
     gap: 5px;

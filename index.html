@@ -10,9 +10,9 @@
     <main>
       <h1>To Do list</h1>
       <section class="hero-section">
-        <p class="profil"></p>
+        <button type="button" id="logout-btn">Déconnexion</button>
         <!-- Bloc connexion / inscription -->
-        <article class="modal hide">
+        <article class="modal modal-singin">
           <div class="signin">
             <h2>Connexion</h2>
             <form action="" id="form-signin">
@@ -29,11 +29,12 @@
           </div>
         </article>
         <!-- Liste -->
+        <p class="profil"></p>
         <div class="sort-btns">
           <button type="button" id="sort-date">Trier par date</button>
           <button type="button" id="sort-state">Trier par état</button>
         </div>
-        <ul>
+        <ul class="setup-task">
           <!-- Bouton ajouter -->
           <li class="li-btn-add">
             <button type="button" class="btn-svg btn-svg-add">
@@ -51,15 +52,15 @@
             <div class="task-container">
               <li class="li-input">
                 <form id="add-task-form">
-                  <span class="task-state task-to-do">A faire</span>
-                  <!-- <div class="input-container">
-                    <label for="form-task-state">Status</label>
+                  <div class="input-container">
+                    <span class="task-state task-to-do">A faire</span>
+                    <!--  <label for="form-task-state">Status</label>
                     <select name="form-task-state" id="form-task-state">
                       <option value="A faire">A faire</option>
                       <option value="En cours">En cours</option>
                       <option value="Fini">Fini</option>
-                    </select>
-                  </div> -->
+                    </select>-->
+                  </div>
                   <div class="input-container">
                     <label for="form-task-date">Date:</label>
                     <input
@@ -91,7 +92,7 @@
               </li>
               <button
                 type="submit"
-                form="form-task"
+                form="add-task-form"
                 class="btn-svg btn-svg-save"
               >
                 <object
@@ -114,6 +115,8 @@
             </div>
           </div>
         </ul>
+        <ul class="task hide"></ul>
+        <ul class="complete hide"></ul>
       </section>
       <!-- Modal qui s'affiche lorsque l'utilisateur veut supprimer une tâche -->
       <div class="modal hide">

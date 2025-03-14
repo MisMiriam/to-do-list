@@ -30,7 +30,7 @@
             </form>
           </div>
         </article>
-        <!-- Liste -->
+        <!-- Boutons de tri et nom de l'utilisateur connecté -->
         <p class="profil"></p>
         <div class="sort-btns">
           <button type="button" id="sort-date">Trier par date</button>
@@ -56,12 +56,6 @@
                 <form id="add-task-form">
                   <div class="input-container">
                     <span class="task-state task-to-do">A faire</span>
-                    <!--  <label for="form-task-state">Status</label>
-                    <select name="form-task-state" id="form-task-state">
-                      <option value="A faire">A faire</option>
-                      <option value="En cours">En cours</option>
-                      <option value="Fini">Fini</option>
-                    </select>-->
                   </div>
                   <div class="input-container">
                     <label for="form-task-date">Date:</label>
@@ -117,30 +111,10 @@
             </div>
           </div>
         </ul>
+        <!-- Listes des tâches -->
         <ul class="task hide"></ul>
         <ul class="complete hide"></ul>
       </section>
-      <!-- Modal qui s'affiche lorsque l'utilisateur veut supprimer une tâche -->
-      <div class="modal hide">
-        <div class="modal__content">
-          <button type="button" class="modal__btn-svg-exit btn-svg">
-            <object
-              data="btn_annuler.svg"
-              type="image/svg+xml"
-              width="30"
-              height="30"
-            ></object>
-          </button>
-          <p class="modal__text">
-            Attention ! Cette action est irréversible. <br />Voulez-vous
-            supprimé la tâche ?
-          </p>
-          <div class="modal__btn">
-            <button type="reset" class="modal__btn-delete">Supprimer</button>
-            <button type="button" class="modal__btn-cancel">Annuler</button>
-          </div>
-        </div>
-      </div>
     </main>
     <script src="script.js"></script>
   </body>

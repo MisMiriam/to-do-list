@@ -74,6 +74,7 @@ loginForm.addEventListener('submit',(e) =>{
                     let btnOngoing = lists[i].children[0].lastElementChild.firstElementChild;
                     let btnComplete = lists[i].children[0].lastElementChild.lastElementChild;
                     let btnDelete = lists[i].parentElement.lastElementChild;
+                    /* modifie l'état de la tâche */
                     btnOngoing.addEventListener('click',()=>{
                         btnOngoing.parentElement.previousElementSibling.classList.forEach(btnClass =>{
                             if(btnClass !== 'task-state'){
@@ -81,6 +82,7 @@ loginForm.addEventListener('submit',(e) =>{
                             }
                         });
                     });
+                    /* déplace la tâche fnie dans ul.complete */
                     btnComplete.addEventListener('click',()=>{
                         btnComplete.parentElement.previousElementSibling.classList.forEach(btnClass =>{
                             if(btnClass !== 'task-state'){
@@ -91,12 +93,12 @@ loginForm.addEventListener('submit',(e) =>{
                         btnDelete.remove();
                         /* désactive le changement de l'état */
                         lists[i].firstElementChild.lastElementChild.remove();
-                        // updateState(lists[i],btnComplete.innerText,'task-complete');
                         lists[i].classList.replace('li-updated','li-archived');
                         completeTasks.classList.remove('hide');
                         task.removeChild(lists[i].parentElement);
                         completeTasks.appendChild(lists[i].parentElement);
                     });
+                    /* supprimer une tâche */
                     btnDelete.addEventListener('click',() =>{
                         lists[i].parentElement.remove();
                         /* cherche la tâche à supprimer dans localStorage */
@@ -135,7 +137,7 @@ btnLogout.addEventListener('click', () =>{
 /* boutons de tri des tâches */
 btnStateSort.addEventListener('click',()=>{
     let states = [];
-    /* ajoute la date dans un tableau */
+    /* ajoute l'état dans un tableau */
     let lists = document.querySelectorAll('.task .task-container');
     lists.forEach(li => {
         states.push(li.children[0].firstElementChild.firstElementChild.innerText);
@@ -179,9 +181,6 @@ btnAdd.addEventListener('click', () =>{
 /* bouton pour sortir du formulaire d'ajout d'une tâche, 
 affiche un message de confirmation si l'utilisateur à commencer à entrer des informations */
 btnExit.addEventListener('click', () =>{
-    // let dateSpan = document.getElementById('form-task-date');
-    // let titleSpan = document.getElementById('form-task-title');
-    // let textSpan = document.getElementById('form-task-text');
     if(dateSpan.value !== '' || 
         titleSpan.value !== '' || 
         textSpan.value !== ''){
@@ -199,12 +198,10 @@ btnExit.addEventListener('click', () =>{
         textSpan.value = '';
     }
 });
+/* formulaire pour ajouter une tâche */
 addTaskForm.addEventListener('submit',(e)=>{
     e.preventDefault();
     let titleRegExp = /[-'a-zA-ZÀ-ÖØ-öø-ÿ0-9\u0020]+/g;
-    // let stateSpan = task.children[0].children[0].firstElementChild.innerText;
-    // console.log(stateSpan);
-    
     if(dateSpan.value === '' || titleSpan.value === ''){
         console.log('Ne pas laissez de champ vide');
     }else if(!titleRegExp.test(titleSpan.value.trim())){
@@ -238,11 +235,8 @@ addTaskForm.addEventListener('submit',(e)=>{
                         updateState(lists[i],btnComplete.innerText,btnClass,'task-complete');
                     }
                 });
-                /* désactive le bouton supprimer */
                 btnDelete.remove();
-                /* désactive le changement de l'état */
                 lists[i].firstElementChild.lastElementChild.remove();
-                // updateState(lists[i],btnComplete.innerText,'task-complete');
                 lists[i].classList.replace('li-updated','li-archived');
                 completeTasks.classList.remove('hide');
                 task.removeChild(lists[i].parentElement);
@@ -250,7 +244,6 @@ addTaskForm.addEventListener('submit',(e)=>{
             });
             btnDelete.addEventListener('click',() =>{
                 lists[i].parentElement.remove();
-                /* cherche la tâche à supprimer dans localStorage */
                 let taskTab = JSON.parse(localStorage.getItem('tasks'));
                 let findTask = taskTab.find(task =>
                     task.user === connectedUser.email &&
@@ -278,7 +271,7 @@ addTaskForm.addEventListener('submit',(e)=>{
  * Créer, enregistrer ou récupérer les informations de connexion de l'utilisateur
  * 
  * @param {String} email - l'email de l'utilisateur
- * @param {String} password -,le mot de passe de l'utilisateur
+ * @param {String} password - le mot de passe de l'utilisateur
  * @returns - l'email et le mot de passe de l'utilisateur connecté dans connectedUser{}
  */
 function userLogin(email, password){
@@ -335,14 +328,15 @@ function displayDate(date){
  * @param {string} btnClass :nom du bouton = ['add','edit','trash','save','exit']
  * @param {string} imgName : nom de l'image = ['ajouter','modifier','supprimer','sauvegarder','annuler']
  * @param {number} dimension :width et height
+ * @returns - un bouton avec une image svg
  */
 function createBtn(btnAttribute,btnClass,imgName,dimension){
     let btn = document.createElement('button');
-    //    Ajoute un type à <button>
+    /* Ajoute un type à <button> */
     btn.setAttribute('type', btnAttribute);
-    //    Ajoute des classes à <button>
+    /* Ajoute des classes à <button> */
     btn.classList.add('btn-svg','btn-hide-text',`btn-svg-${btnClass}`);
-    // Créé un élément object
+    /* Créé un élément object */
     btn.innerHTML = `<object 
     data="btn_${imgName}.svg" 
     type="image/svg+xml" 
@@ -356,6 +350,7 @@ function createBtn(btnAttribute,btnClass,imgName,dimension){
  * Créer une li de la tâche
  * 
  * @param {String} state - l'état de la tâche (A faire, En cours ou Fini)
+ * @param {String} stateClass - la classe de l'état de la tâche (task-to-do, task-ongoing, task-complete)
  * @param {Date} date - la date de la tâche à effectuer
  * @param {String} title - le titre de la tâche
  * @param {String} text - une description de la tâche
@@ -421,6 +416,8 @@ function saveTask(stateValue, dateValue, titleValue, textValue){
  * 
  * @param {HTMLElement} li - la li à récupérer
  * @param {String} newState - le nouvel état de la tâche
+ * @param {String} oldStateClass - l'ancienne classe de l'état
+ * @param {String} newStateClass - la nouvelle classe de l'état
  */
 function updateState(li,newState, oldStateClass,newStateClass){
     let taskTab = JSON.parse(localStorage.getItem('tasks'));

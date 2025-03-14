@@ -1,7 +1,7 @@
 // Buttons
 const btnAdd = document.querySelector('.btn-svg-add');
 const btnExit = document.querySelector('.btn-svg-exit');
-const btnLogout = document.getElementById('logout-btn');
+const btnLogout = document.querySelector('.logout-btn');
 const btnDateSort = document.getElementById('sort-date');
 const btnStateSort = document.getElementById('sort-state');
 // Forms

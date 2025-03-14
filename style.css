@@ -20,7 +20,7 @@ body{
     margin: 0;
     box-sizing: border-box;
     font-family: "Manrope", serif;
-    background-image:  linear-gradient(var(--body-bg-filter),var(--body-bg-filter)),url("/images/background-img.jpg");
+    background-image:  linear-gradient(var(--body-bg-filter),var(--body-bg-filter)),url("images/background-img.jpg");
     background-size: contain;
     background-attachment: fixed;
 }

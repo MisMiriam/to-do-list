@@ -42,7 +42,7 @@ a{
 main{
     background-color: var(--main-bg-color);
     margin: 5rem 3rem;
-    padding: 30px 80px; /* mettre valeur relative */
+    padding: 1.9rem 5rem;
     border-radius: 50px;
     border: 1px solid black;
     min-height: 60vh;
@@ -67,10 +67,6 @@ ul{
     gap: 1rem;
     padding: 0;
     margin: 0.5rem 0;
-}
-p{
-    margin: 0 0 0.5rem;
-    text-align: right;
 }
 object{
     pointer-events: none;
@@ -125,7 +121,29 @@ button.btn-svg{
 .flex{
     display: flex;
 }
-/* ************************************************ */
+/* ************************************************ */u
+/* affichage de l'utilisateur */
+.profil{
+    margin: 0 0 0.5rem;
+    text-align: right;
+}
+/* Boutons de tri  */
+.sort-btns {
+    button{
+    background-color: var(--btn-cancel-bg-color);
+    border: 1px solid black;
+    border-style: none;
+    padding: 0.2rem 0.8rem;
+    margin-bottom: 0.5rem;
+        &:hover{
+            filter: brightness(70%);
+        }
+        &:active{
+            filter: brightness(120%);
+            background-color: rgb(201, 189, 174);
+        }
+    }
+}
 /* Li tâche */
 li{
     display: flex;
@@ -187,6 +205,13 @@ li{
         background-color: transparent;
     }
 }
+.li-input-btns{
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    justify-content: center;
+    gap: 10px;
+}
 form{
     display: flex;
     flex-direction: row;
@@ -197,23 +222,6 @@ form{
     flex-direction: row;
     align-items: center;
     gap: 5px;
-}
-/* Boutons de tri  */
-.sort-btns {
-    button{
-    background-color: var(--btn-cancel-bg-color);
-    border: 1px solid black;
-    border-style: none;
-    padding: 0.2rem 0.8rem;
-    margin-bottom: 0.5rem;
-        &:hover{
-            filter: brightness(70%);
-        }
-        &:active{
-            filter: brightness(120%);
-            background-color: rgb(201, 189, 174);
-        }
-    }
 }
 /* Status des tâches */
 .dropdown{
@@ -325,7 +333,6 @@ form{
 }
 .logout-btn{
     background-color: var(--btn-cancel-bg-color);
-    border: 1px solid black;
     border-style: none;
     padding: 0.2rem 0.8rem;
     &:hover{
@@ -335,5 +342,100 @@ form{
         filter: brightness(120%);
         background-color: rgb(201, 189, 174);
     }
-
+}
+/* RESPONSIVE */
+@media (max-width: 1125px){
+    .add-task-container .task-container{ 
+        flex-direction: column;
+        margin: 10% 5%;
+        .li-input{
+            justify-content: center;
+            width: 80%;
+            padding: 1rem;
+        }
+       .li-input form{
+            flex-direction: column;
+            width: 100%;
+        }
+        input,
+        textarea{
+            width: 100%;
+        }
+    }
+}
+/* Tablettes et téléphone */
+@media (max-width: 768px) {
+    main{
+        margin: 1rem 1.5rem;
+        padding: 1.2rem 2rem;
+        border-radius: 20px;
+    }
+    h1{
+        font-size: 2rem;
+        margin-bottom: 1.2rem;
+    }
+    .profil{
+        text-align: left;
+        margin: 0.6rem 0;
+    }
+    .task-container,
+    .li-task{
+        flex-direction: column;
+        align-items: flex-start;
+        button{
+            padding-left: 2.7rem;
+        }
+    }
+    .li-task{
+        border-radius: 15px;
+        &.li-updated{
+            align-self: center;
+            width: 80%;
+            
+        }   
+    }
+}
+/* Petit téléphone */
+@media (max-width: 375px){
+    main{
+        margin: 0.4rem .7rem;
+        padding: 0.4rem 1rem;
+    }
+    h1{
+        font-size: 1.5rem;
+        margin-bottom: 10Px;
+    }
+    .profil{
+        font-size: 0.8rem;
+    }
+    .sort-btns button,
+    .signin form button,
+    .logout-btn{
+        font-size: 0.8rem;
+        padding: 0.2rem 0.3rem;
+    }
+    li{
+        font-size: 0.8rem;
+        padding: .3rem .6rem;
+    }
+    button.btn-svg {
+        font-size: 0.8rem;
+    }
+    .add-task-container .input-container{
+        flex-direction: column;
+        align-items: flex-start;
+        input,
+        textarea{
+            width: 90%;
+        }
+    }
+    /* Formulaire de connexion */
+    .signin{
+        h2{
+            font-size: 1.5rem;
+        }
+        form{
+            gap: 0.5rem;
+        }
+    }
 }
